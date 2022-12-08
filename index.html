@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Quack Chatbot</title>
+
+  <!-- Bootstrap 5 CSS -->
+  <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/5.0.0-alpha1/css/bootstrap.min.css" integrity="sha384-r4NyP46KrjDleawBgD5tp8Y7UzmLA05oM1iAEQ17CSuDqnUK2+k9luXQOfXJCJ4I" crossorigin="anonymous">
+</head>
+<body>
+  <div class="container">
+    <h1>Quack Chatbot</h1>
+
+    <form>
+      <div class="form-group">
+        <label for="message">Message:</label>
+        <input type="text" class="form-control" id="message">
+      </div>
+
+      <button type="submit" class="btn btn-primary">Send</button>
+    </form>
+
+    <hr>
+
+    <p id="response"></p>
+  </div>
+
+  <script>
+    // Get a reference to the form and input field
+    const form = document.querySelector('form');
+    const input = document.querySelector('#message');
+
+    // This function generates a random number of "quack"s
+    function generateQuacks() {
+      // Generate a random number between 1 and 10
+      const numQuacks = Math.floor(Math.random() * 10) + 1;
+
+      // Return the specified number of "quack"s
+      return Array(numQuacks)
+        .fill('quack')
+        .join(' ');
+    }
+
+    // When the form is submitted, update the response
+    form.addEventListener('submit', event => {
+      // Prevent the form from actually being submitted
+      event.preventDefault();
+
+      // Get the value of the input field
+      const message = input.value;
+
+      // Generate the response
+      const response = `You said: ${message}. I respond with: ${generateQuacks()}`;
+
+      // Update the response element
+      document.querySelector('#response').innerHTML = response;
+    });
+  </script>
+</body>
+</html>
